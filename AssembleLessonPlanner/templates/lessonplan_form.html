@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}{{ form.instance.pk|default:"Create" }} Lesson Plan{% endblock %}
+{% block content %}
+
+<h1>{{ form.instance.pk|default:"Create" }} Lesson Plan</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    
+    <h2>Materials Preparation</h2>
+    {{ material_formset.management_form }}
+    {% for form in material_formset.forms %}
+        {{ form|crispy }}
+    {% endfor %}
+    
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{% url 'lessonplan_list' %}" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+{% endblock %}

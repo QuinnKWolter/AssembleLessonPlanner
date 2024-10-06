@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Inventory Items{% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Inventory Items</h1>
+    <a href="{% url 'inventoryitem_create' %}" class="btn btn-primary">Add New Inventory Item</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Item Name</th>
+            <th>Quantity in Stock</th>
+            <th>Category</th>
+            <th>Supplier</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for inventoryitem in inventoryitems %}
+        <tr>
+            <td>{{ inventoryitem.name }}</td>
+            <td>{{ inventoryitem.quantity_in_stock }}</td>
+            <td>{{ inventoryitem.category }}</td>
+            <td>{{ inventoryitem.supplier }}</td>
+            <td>
+                <a href="{% url 'inventoryitem_detail' inventoryitem.pk %}" class="btn btn-sm btn-primary">View</a>
+                <a href="{% url 'inventoryitem_update' inventoryitem.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="{% url 'inventoryitem_delete' inventoryitem.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                <a href="{% url 'add_stock' inventoryitem.pk %}" class="btn btn-sm btn-info">+</a>
+                <a href="{% url 'remove_stock' inventoryitem.pk %}" class="btn btn-sm btn-info">-</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="8">No inventory items available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

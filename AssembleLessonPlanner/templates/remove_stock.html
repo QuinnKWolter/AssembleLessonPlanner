@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Remove Stock from {{ inventory_item.name }}{% endblock %}
+{% block content %}
+
+<h1>Remove Stock from {{ inventory_item.name }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" name="transaction_type" value="Removed">
+    <div class="mt-3">
+        <button type="submit" class="btn btn-danger">Remove Stock</button>
+        <a href="{% url 'inventoryitem_detail' inventory_item.pk %}" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+{% endblock %}

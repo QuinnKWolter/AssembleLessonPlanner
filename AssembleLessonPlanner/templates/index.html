@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<div class="text-center mt-5">
+    <h1 class="display-4">Welcome to the Assemble Lesson Planner Prototype</h1>
+    <p class="lead">Your hub for organizing lesson plans and managing inventory efficiently.</p>
+    <hr class="my-4">
+    <p>Get started by exploring the options below.</p>
+    <div class="d-flex justify-content-center">
+        <a href="{% url 'lessonplan_list' %}" class="btn btn-primary btn-lg mx-2">Lesson Plans</a>
+        <a href="{% url 'inventoryitem_list' %}" class="btn btn-success btn-lg mx-2">Inventory</a>
+        <a href="{% url 'help' %}" class="btn btn-info btn-lg mx-2">Help</a>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-6">
+        <h2>Manage Lesson Plans</h2>
+        <p>Create, edit, and organize your lesson plans with ease. Our intuitive interface allows you to plan effectively and ensure all materials and objectives are aligned.</p>
+        <a href="{% url 'lessonplan_create' %}" class="btn btn-outline-primary">Create a Lesson Plan</a>
+    </div>
+    <div class="col-md-6">
+        <h2>Track Inventory</h2>
+        <p>Keep track of all your materials and supplies. Manage stock levels, supplier information, and more all in one place.</p>
+        <a href="{% url 'inventoryitem_create' %}" class="btn btn-outline-success">Add Inventory Item</a>
+    </div>
+</div>
+
+{% endblock %}

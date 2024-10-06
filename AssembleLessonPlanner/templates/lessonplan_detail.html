@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}{{ lessonplan.title }}{% endblock %}
+{% block content %}
+<h1>{{ lessonplan.title }}</h1>
+<p><strong>Program:</strong> {{ lessonplan.program }}</p>
+<p><strong>Date & Time:</strong> {{ lessonplan.date_time|date:"Y-m-d H:i" }}</p>
+<p><strong>Duration:</strong> {{ lessonplan.duration }}</p>
+<p><strong>Location:</strong> {{ lessonplan.location }}</p>
+<p><strong>Learning Objectives:</strong> {{ lessonplan.learning_objectives }}</p>
+<p><strong>Objectives:</strong> {{ lessonplan.objectives }}</p>
+<p><strong>State Common Core Standards:</strong> {{ lessonplan.state_common_core_standards }}</p>
+<p><strong>Lesson Overview:</strong> {{ lessonplan.lesson_overview }}</p>
+<p><strong>Preparation Time:</strong> {{ lessonplan.preparation_time }}</p>
+<p><strong>Differentiation Strategies:</strong> {{ lessonplan.differentiation_strategies }}</p>
+<p><strong>Assessment:</strong> {{ lessonplan.assessment }}</p>
+<p><strong>Prerequisites:</strong> {{ lessonplan.prerequisites }}</p>
+<p><strong>Safety Considerations:</strong> {{ lessonplan.safety_considerations }}</p>
+<p><strong>Technology Requirements:</strong> {{ lessonplan.technology_requirements }}</p>
+<p><strong>Follow-up Activities:</strong> {{ lessonplan.follow_up_activities }}</p>
+<p><strong>Feedback and Reflection:</strong> {{ lessonplan.feedback_and_reflection }}</p>
+<p><strong>Vocabulary:</strong> {{ lessonplan.vocabulary }}</p>
+<p><strong>Homework Takeaways:</strong> {{ lessonplan.homework_takeaways }}</p>
+
+<h2>Materials Needed</h2>
+<ul>
+    {% for material in lessonplan.materialpreparation_set.all %}
+    <li>{{ material.inventory_item.name }} - {{ material.quantity_needed }}</li>
+    {% endfor %}
+</ul>
+
+<div class="mt-3">
+    <a href="{% url 'lessonplan_update' lessonplan.pk %}" class="btn btn-warning">Edit</a>
+    <a href="{% url 'lessonplan_delete' lessonplan.pk %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'lessonplan_list' %}" class="btn btn-secondary">Back to List</a>
+</div>
+{% endblock %}

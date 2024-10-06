@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}{{ inventoryitem.name }}{% endblock %}
+{% block content %}
+
+<h1>{{ inventoryitem.name }}</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <p><strong>Description:</strong> {{ inventoryitem.description }}</p>
+        <p><strong>Category:</strong> {{ inventoryitem.category }}</p>
+        <p><strong>Quantity in Stock:</strong> {{ inventoryitem.quantity_in_stock }}</p>
+        <p><strong>Supplier:</strong> {{ inventoryitem.supplier }}</p>
+        <p><strong>Cost per Unit:</strong> {{ inventoryitem.cost_per_unit }}</p>
+        <p><strong>Unit of Measurement:</strong> {{ inventoryitem.unit_of_measurement }}</p>
+        <p><strong>Minimum Stock Level:</strong> {{ inventoryitem.minimum_stock_level }}</p>
+        <p><strong>Maximum Stock Level:</strong> {{ inventoryitem.maximum_stock_level }}</p>
+        <p><strong>Reorder Quantity:</strong> {{ inventoryitem.reorder_quantity }}</p>
+        <p><strong>Storage Location:</strong> {{ inventoryitem.storage_location }}</p>
+        <p><strong>Shelf Life:</strong> {{ inventoryitem.shelf_life }}</p>
+        <p><strong>Storage Conditions:</strong> {{ inventoryitem.storage_conditions }}</p>
+        <p><strong>Last Used Date:</strong> {{ inventoryitem.last_used_date }}</p>
+        <p><strong>Usage Frequency:</strong> {{ inventoryitem.usage_frequency }}</p>
+        <p><strong>Assigned To:</strong> {{ inventoryitem.assigned_to }}</p>
+        <p><strong>Condition Status:</strong> {{ inventoryitem.condition_status }}</p>
+        <p><strong>Maintenance Requirements:</strong> {{ inventoryitem.maintenance_requirements }}</p>
+        <p><strong>Repair History:</strong> {{ inventoryitem.repair_history }}</p>
+        <p><strong>Safety Data Sheet:</strong> {{ inventoryitem.safety_data_sheet }}</p>
+        <p><strong>Compliance Notes:</strong> {{ inventoryitem.compliance_notes }}</p>
+        <p><strong>Notes:</strong> {{ inventoryitem.notes }}</p>
+        <p><strong>Attachments:</strong> {{ inventoryitem.attachments }}</p>
+    </div>
+    <div class="col-md-6">
+        {% if inventoryitem.item_image %}
+        <img src="{{ inventoryitem.item_image.url }}" class="img-fluid" alt="{{ inventoryitem.name }}">
+        {% endif %}
+    </div>
+</div>
+
+<div class="mt-3">
+    <a href="{% url 'inventoryitem_update' inventoryitem.pk %}" class="btn btn-warning">Edit</a>
+    <a href="{% url 'inventoryitem_delete' inventoryitem.pk %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'inventoryitem_list' %}" class="btn btn-secondary">Back to List</a>
+</div>
+
+{% endblock %}
